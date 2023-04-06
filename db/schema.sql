@@ -1,0 +1,2 @@
+DROP DATABASE IF EXISTS snackblog_db;
+CREATE DATABASE snackblog_db;
