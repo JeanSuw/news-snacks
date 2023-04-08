@@ -10,7 +10,7 @@ It's a CMS-style blog site where developers can publish their blog posts and com
 * [Credits](#credits)
 
 ## [Installation](#table-of-content)
-There is no starter code to build this application. However, these following packages were used to make this project exist. And you must install them to make it functional on your terminal. It is deployed in Heroku. Click the link is below.
+Before using NEWSSNACKS, you must install following packages
 
 * Handlebars.js
 * MySql2
@@ -30,6 +30,19 @@ npm i express-session
 npm i connect-session-sequelize
 ```
 
+Also, you must create a .env file to enter your SQL root password.
+```bash
+// make sure that you create a file outside of the folders 
+// Call this inside your terminal
+touch .env 
+
+// you are copying this 3 lines below and paste it inside .env file and modify the DB_PASSWORD
+DB_NAME='snackblog_db'
+DB_USER='root'
+DB_PASSWORD='INSERT_PASSWORD_HERE'
+```
+
+It is deployed in Heroku. Click the link is below.
 ## [Usage](#table-of-content)
 To use the website, you must log in
 
