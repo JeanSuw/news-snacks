@@ -39,6 +39,10 @@ Without these references, this application would not function.
 Bootcamp course materials
 * 14-MVC/17-Ins_Session-Storage 
 
+Collected Data for [contentPostData.json](./models/Contentpost.js)
+* Stories about Zuckerberg making his employee change his avatar and Dyson Zone are from [12 dumbest tech moments of 2022](https://www.fastcompany.com/90822935/12-dumbest-tech-moments-of-2022)
+* [ChatGPT and the future of AI at work](https://www.dialpad.com/blog/chatgpt-ai-at-work/)
+
 Packages
 * [Handlebars.js](https://www.npmjs.com/package/express-handlebars)
 * [MySql2](https://www.npmjs.com/package/mysql2)
