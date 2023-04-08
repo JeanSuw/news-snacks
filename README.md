@@ -35,6 +35,9 @@ To use the website, you must log in
 
 
 ## [Credits](#table-of-content)
+Without these references, this application would not function.
+Bootcamp course materials
+* 14-MVC/17-Ins_Session-Storage 
 
 Packages
 * [Handlebars.js](https://www.npmjs.com/package/express-handlebars)
