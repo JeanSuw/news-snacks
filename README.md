@@ -28,6 +28,7 @@ npm i express-handlebars
 npm i mysql2
 npm i express-session
 npm i connect-session-sequelize
+npm i express
 ```
 
 Also, you must create a .env file to enter your SQL root password.
@@ -42,6 +43,20 @@ DB_USER='root'
 DB_PASSWORD='INSERT_PASSWORD_HERE'
 ```
 
+When you want to add table, here this is what you must do:
+```bash
+mysql -u root -p
+// Once you press enter your root password
+// enter this line of command
+source db/schema.sql
+// and exit mysql
+quit
+// After that you may use seed command
+node seeds/seed.js
+// And then run the program
+npm start
+```
+
 It is deployed in Heroku. Click the link is below.
 ## [Usage](#table-of-content)
 To use the website, you must log in
@@ -51,6 +66,9 @@ To use the website, you must log in
 Without these references, this application would not function.
 Bootcamp course materials
 * 14-MVC/17-Ins_Session-Storage 
+
+CSS Bootstrap
+* [Navbar](https://getbootstrap.com/docs/5.3/components/navbar/#nav)
 
 Collected Data for [contentPostData.json](./models/Contentpost.js)
 * Stories about Zuckerberg making his employee change his avatar and Dyson Zone are from [12 dumbest tech moments of 2022](https://www.fastcompany.com/90822935/12-dumbest-tech-moments-of-2022)

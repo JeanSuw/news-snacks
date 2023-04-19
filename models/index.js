@@ -22,8 +22,8 @@ Comments.belongsTo(ContentPost, {
 User.hasMany(Comments, {
     foreignKey: 'user_id'
 })
-// Post can have many comments
-Post.hasMany(Comments, {
+// ContentPost can have many comments
+ContentPost.hasMany(Comments, {
     foreignKey: 'userPost_id'
 });
 
