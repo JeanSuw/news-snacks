@@ -69,7 +69,7 @@ Bootcamp course materials
 
 CSS Bootstrap
 * [Navbar](https://getbootstrap.com/docs/5.3/components/navbar/#nav)
-
+* [Card](https://getbootstrap.com/docs/5.3/components/card/#about)
 Collected Data for [contentPostData.json](./models/Contentpost.js)
 * Stories about Zuckerberg making his employee change his avatar and Dyson Zone are from [12 dumbest tech moments of 2022](https://www.fastcompany.com/90822935/12-dumbest-tech-moments-of-2022)
 * [ChatGPT and the future of AI at work](https://www.dialpad.com/blog/chatgpt-ai-at-work/)
