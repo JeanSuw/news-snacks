@@ -37,6 +37,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+// app.get('/', async (req, res) => {
+//   res.redirect('./api/users/login');
+// });
 app.use(routes);
 
 sequelize.sync({ force: false }).then(() => {

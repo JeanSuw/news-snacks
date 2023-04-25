@@ -16,6 +16,7 @@ router.get('/', async (req, res) => {
             },
             { model: User, attributes: ['username', 'email']}
         ]});
+        res.status(200).json(postData);
 
         res.render('homepage', {loggedIn: req.session.loggedIn});
 
@@ -38,7 +39,10 @@ router.get('/post/:id', async (req, res) => {
                 {model: User, attributes: ['username']}
             ]
         });
-
+        res.status(200).json(postData);
+        const onePost = postData.get({plain: true});
+        res.render('contentpost', {onePost, loggedIn: req.session.loggedIn});
+        
     }catch (err){
         res.status(500).json(err);
     }
