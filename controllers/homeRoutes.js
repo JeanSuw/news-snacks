@@ -3,6 +3,7 @@ const { User, ContentPost, Comments } = require('../models');
 const sequelize = require('../config/connection');
 const { ADDRGETNETWORKPARAMS } = require('dns');
 const { post } = require('./api');
+const withAuth = require('../utils/auth');
 
 // homeRoutes
 router.get('/', async (req, res) => {
@@ -12,7 +13,7 @@ router.get('/', async (req, res) => {
             include: [{
                 model: Comments, 
                 attributes: ['id', 'description', 'userPost_id'], 
-                include: { model: user, attributes: ['username', 'email']}
+                include: { model: User, attributes: ['username', 'email']}
             },
             { model: User, attributes: ['username', 'email']}
         ]});
@@ -34,7 +35,7 @@ router.get('/post/:id', async (req, res) => {
             include: [{
                 model: Comments,
                 attributes: ['id', 'description', 'userPost_id', 'user_id'], 
-                include: { model: user, attributes: ['username']}
+                include: { model: User, attributes: ['username']}
             },
                 {model: User, attributes: ['username']}
             ]
@@ -48,6 +49,25 @@ router.get('/post/:id', async (req, res) => {
     }
 });
 
+router.get('/profile', withAuth, async (req, res) => {
+    try {
+      // Find the logged in user based on the session ID
+      const userData = await User.findByPk(req.session.user_id, {
+        attributes: { exclude: ['password'] },
+        include: [{ model: ContentPost}],
+      });
+  
+      const user = userData.get({ plain: true });
+  
+      res.render('profile', {
+        ...user,
+        logged_in: true
+      });
+    } catch (err) {
+      res.status(500).json(err);
+    }
+});
+
 // Login
 router.get('/login', (req, res) => {
     if (req.session.loggedIn) {
@@ -58,12 +78,12 @@ router.get('/login', (req, res) => {
 });
 
 // Sign up
-router.get('/signup', (req, res) => {
-    if (req.session.loggedIn) {
-        res.redirect('/');
-        return;
-    }
-    res.render('signup');
-});
+// router.get('/signup', (req, res) => {
+//     if (req.session.loggedIn) {
+//         res.redirect('/');
+//         return;
+//     }
+//     res.render('signup');
+// });
 
 module.exports = router;

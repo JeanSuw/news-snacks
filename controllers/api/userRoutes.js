@@ -1,5 +1,6 @@
 // give ways to find the password and username 
 const router = require('express').Router();
+const { urlencoded } = require('express');
 const { User, ContentPost, Comments } = require('../../models');
 const withAuth = require('../../utils/auth');
 
@@ -35,7 +36,10 @@ router.get('/:id', withAuth, async (req, res) => {
 // POST localhost:3001/api/user
 router.post('/', async (req, res) =>{
     try{
-        const userData = await User.create(req.body);
+        const userData = await User.create({
+            username: req.body.username,
+            password: req.body.password
+        });
         req.session.save(() => {
             req.session.userID = userData.id;
             req.session.username = userData.username,
@@ -50,7 +54,8 @@ router.post('/', async (req, res) =>{
 // include log in
 router.post('/login', async (req, res) => {
     try{
-        const userData = User.findOne({where: {username: req.body.username}});
+        const userData = await User.findOne({where: {email: req.body.email}});
+        console.log({userData, body: req.body});
         if (!userData){
             res.status(400).json("incorrect username, try again");
             return;
@@ -69,6 +74,24 @@ router.post('/login', async (req, res) => {
     } catch (err){
         res.status(400).json(err);
     }
+});
+
+router.get('/profile', withAuth, async (req, res) => {
+    try{
+        const userData = await User.findByPk(req.session.userID, {
+            attributes: { exclude: ['password'] },
+            include: [{ model: ContentPost }],
+          });
+      
+          const user = userData.get({ plain: true });
+      
+          res.render('contentpost', {
+            ...user,
+            logged_in: true
+          });
+    } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 
